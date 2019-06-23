@@ -1,0 +1,37 @@
+[
+  {
+    "FIRST_NAME": "Debra",
+    "LAST_NAME": "Burks",
+    "NUMBER": "880012XXXX",
+    "EMAIL": "debra.burks@yahoo.com",
+    "ADDRESS": "9273 Thome Ave., Orchard Park, NY - 14127"
+  },
+  {
+    "FIRST_NAME": "Kasha",
+    "LAST_NAME": "Todd",
+    "NUMBER": "NULL",
+    "EMAIL": "kasha.todd@yahoo.com",
+    "ADDRESS": "910, Vine Street, Campbell, CA - 95008"
+  },
+  {
+    "FIRST_NAME": "Tameka",
+    "LAST_NAME": "Fisher",
+    "NUMBER": "880111XXXX",
+    "EMAIL": "tameka.fisher@yahoo.com",
+    "ADDRESS": "7693 Honey Creek St., Redondo Beach, CA - 90278"
+  },
+  {
+    "FIRST_NAME": "Daryl",
+    "LAST_NAME": "Spence",
+    "NUMBER": "990015XXXX",
+    "EMAIL": "NULL",
+    "ADDRESS": "988 Pearl Lane!!! (Uniondale), NY - 11553"
+  },
+  {
+    "FIRST_NAME": "Charolette",
+    "LAST_NAME": "Rice",
+    "NUMBER": "720012XXXX",
+    "EMAIL": "charolette.rice@msn.com",
+    "ADDRESS": "107 ~ River Dr. `Sacramento`, \"CA\"      95820"
+  }
+]
