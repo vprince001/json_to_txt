@@ -47,7 +47,8 @@ const jsonToTxt = function(filePath) {
   const headers = Object.keys(data[0]);
   const startPoints = getStartPoints(data, headers);
   let rows = getRows(data, headers, startPoints);
-  fs.writeFileSync("./output.txt", rows.join("\n"));
+  return rows.join("\n");
+  // fs.writeFileSync("./output.txt", rows.join("\n"));
 };
 
-jsonToTxt("./data.json");
+module.exports = jsonToTxt;
