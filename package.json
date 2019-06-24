@@ -1,0 +1,28 @@
+{
+  "name": "json-to-txt",
+  "version": "1.0.0",
+  "description": "Reads JSON data (Array of objects) and returns a string in a txt file format.",
+  "main": "json_to_txt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vprince001/json_to_txt.git"
+  },
+  "keywords": [
+    "json-to-txt",
+    "json",
+    "txt",
+    "export-json-to-txt",
+    "json-to-string",
+    "get-string-from-json",
+    "json-string"
+  ],
+  "author": "Prince Verma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vprince001/json_to_txt/issues"
+  },
+  "homepage": "https://github.com/vprince001/json_to_txt#readme"
+}
