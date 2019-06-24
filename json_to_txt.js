@@ -1,24 +1,20 @@
 const fs = require("fs");
 
-const data = JSON.parse(fs.readFileSync("./data.json", "utf8"));
+const getStartPoints = function(data, headers) {
+  let startPoints = [0];
+  let startPoint = 0;
 
-const headers = Object.keys(data[0]);
+  headers.forEach(header => {
+    let lengths = [header.length];
+    data.forEach(obj => {
+      lengths.push(obj[header].length);
+    });
+    startPoint += Math.max(...lengths) + 5;
+    startPoints.push(startPoint);
+  });
 
-let startPoints = [0];
-let startPoint = 0;
-
-for (let headersIndex = 0; headersIndex < headers.length; headersIndex++) {
-  let header = headers[headersIndex];
-  let lengths = [header.length];
-  for (let dataIndex = 0; dataIndex < data.length; dataIndex++) {
-    let obj = data[dataIndex];
-    let value = obj[header];
-    let valueLength = value.length;
-    lengths.push(valueLength);
-  }
-  startPoint += Math.max(...lengths) + 5;
-  startPoints.push(startPoint);
-}
+  return startPoints;
+};
 
 const addSpaces = function(string, spaceCount) {
   for (let index = 0; index < spaceCount; index++) {
@@ -27,34 +23,31 @@ const addSpaces = function(string, spaceCount) {
   return string;
 };
 
-let lines = [];
-
-const addHeaderLine = function() {
-  let line = "";
-  for (let headersIndex = 0; headersIndex < headers.length; headersIndex++) {
-    let header = headers[headersIndex];
-    line += header;
-    let spaceCount = startPoints[headersIndex + 1] - line.length;
-    line = addSpaces(line, spaceCount);
-  }
-  lines.push(line);
+const addRow = function(headers, startPoints, isHeader, obj) {
+  let row = "";
+  headers.forEach((header, index) => {
+    row += isHeader ? header : obj[header];
+    let spaceCount = startPoints[index + 1] - row.length;
+    row = addSpaces(row, spaceCount);
+  });
+  return row;
 };
 
-addHeaderLine();
+const getRows = function(data, headers, startPoints) {
+  let rows = [];
+  rows.push(addRow(headers, startPoints, true));
+  data.forEach(obj => {
+    rows.push(addRow(headers, startPoints, false, obj));
+  });
+  return rows;
+};
 
-for (let dataIndex = 0; dataIndex < data.length; dataIndex++) {
-  let obj = data[dataIndex];
-  let line = "";
-  for (let headersIndex = 0; headersIndex < headers.length; headersIndex++) {
-    let header = headers[headersIndex];
-    let value = obj[header];
-    line += value;
-    let spaceCount = startPoints[headersIndex + 1] - line.length;
-    line = addSpaces(line, spaceCount);
-  }
-  lines.push(line);
-}
+const jsonToTxt = function(filePath) {
+  const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const headers = Object.keys(data[0]);
+  const startPoints = getStartPoints(data, headers);
+  let rows = getRows(data, headers, startPoints);
+  fs.writeFileSync("./output.txt", rows.join("\n"));
+};
 
-let finalData = lines.join("\n");
-
-fs.writeFileSync("./output.txt", finalData);
+jsonToTxt("./data.json");
