@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { addRow } = require("./src/lib.js");
+const { addRow, getStartPoint } = require("./src/lib.js");
 const FORMAT = "utf8";
 
 const getStartPoints = function(data, headers) {
@@ -7,11 +7,7 @@ const getStartPoints = function(data, headers) {
   let startPoint = 0;
 
   headers.forEach(header => {
-    let lengths = [header.length];
-    data.forEach(obj => {
-      lengths.push(obj[header].length);
-    });
-    startPoint += Math.max(...lengths) + 5;
+    startPoint = getStartPoint(header, data, startPoint);
     startPoints.push(startPoint);
   });
 

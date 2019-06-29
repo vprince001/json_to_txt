@@ -17,4 +17,13 @@ const addRow = function(headers, startPoints, isHeader, obj) {
   return row;
 };
 
-module.exports = { addSpaces, addRow };
+const getStartPoint = function(header, data, startPoint) {
+  let lengths = [header.length];
+  data.forEach(obj => {
+    lengths.push(obj[header].length);
+  });
+  startPoint += Math.max(...lengths) + 5;
+  return startPoint;
+};
+
+module.exports = { addSpaces, addRow, getStartPoint };
