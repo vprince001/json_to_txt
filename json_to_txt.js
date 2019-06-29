@@ -1,4 +1,6 @@
 const fs = require("fs");
+const { addRow } = require("./src/lib.js");
+const FORMAT = "utf8";
 
 const getStartPoints = function(data, headers) {
   let startPoints = [0];
@@ -16,23 +18,6 @@ const getStartPoints = function(data, headers) {
   return startPoints;
 };
 
-const addSpaces = function(string, spaceCount) {
-  for (let index = 0; index < spaceCount; index++) {
-    string += " ";
-  }
-  return string;
-};
-
-const addRow = function(headers, startPoints, isHeader, obj) {
-  let row = "";
-  headers.forEach((header, index) => {
-    row += isHeader ? header : obj[header];
-    let spaceCount = startPoints[index + 1] - row.length;
-    row = addSpaces(row, spaceCount);
-  });
-  return row;
-};
-
 const getRows = function(data, headers, startPoints) {
   let rows = [];
   rows.push(addRow(headers, startPoints, true));
@@ -43,7 +28,7 @@ const getRows = function(data, headers, startPoints) {
 };
 
 const jsonToTxt = function(filePath) {
-  const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const data = JSON.parse(fs.readFileSync(filePath, FORMAT));
   const headers = Object.keys(data[0]);
   const startPoints = getStartPoints(data, headers);
   let rows = getRows(data, headers, startPoints);
