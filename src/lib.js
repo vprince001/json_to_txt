@@ -1,4 +1,5 @@
 const WS = " ";
+const ES = "";
 
 const addSpaces = function(string, spaceCount) {
   for (let index = 0; index < spaceCount; index++) {
@@ -7,14 +8,23 @@ const addSpaces = function(string, spaceCount) {
   return string;
 };
 
-const addRow = function(headers, startPoints, isHeader, obj) {
-  let row = "";
+const getRow = function(headers, startPoints, isHeader, obj) {
+  let row = ES;
   headers.forEach((header, index) => {
     row += isHeader ? header : obj[header];
     let spaceCount = startPoints[index + 1] - row.length;
     row = addSpaces(row, spaceCount);
   });
   return row;
+};
+
+const getRows = function(data, headers, startPoints) {
+  let rows = [];
+  rows.push(getRow(headers, startPoints, true));
+  data.forEach(obj => {
+    rows.push(getRow(headers, startPoints, false, obj));
+  });
+  return rows;
 };
 
 const getStartPoint = function(header, data, startPoint) {
@@ -26,4 +36,16 @@ const getStartPoint = function(header, data, startPoint) {
   return startPoint;
 };
 
-module.exports = { addSpaces, addRow, getStartPoint };
+const getStartPoints = function(data, headers) {
+  let startPoints = [0];
+  let startPoint = 0;
+
+  headers.forEach(header => {
+    startPoint = getStartPoint(header, data, startPoint);
+    startPoints.push(startPoint);
+  });
+
+  return startPoints;
+};
+
+module.exports = { addSpaces, getRow, getRows, getStartPoint, getStartPoints };

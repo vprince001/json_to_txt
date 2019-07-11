@@ -1,71 +1,76 @@
-const { equal } = require("assert");
-const { addSpaces, addRow, getStartPoint } = require("../src/lib");
+const { equal, deepEqual } = require("assert");
+
+const {
+  JSON_DATA,
+  HEADERS,
+  OBJ1,
+  START_POINTS,
+  STRING_HEADERS_LINE,
+  STRING_FIRST_LINE,
+  FINAL_RESULT_ARRAY
+} = require("./constants_for_test");
+
+const {
+  addSpaces,
+  getRow,
+  getRows,
+  getStartPoint,
+  getStartPoints
+} = require("../src/lib");
 
 describe("addSpaces", function() {
-  it("should add given number of spaces to the given string if given count is more than 0", function() {
-    const actualOutput = addSpaces("hello", 2);
-    const expectedOutput = "hello  ";
-    equal(actualOutput, expectedOutput);
+  it("should add given number of spaces to the string if count is more than 0", function() {
+    const actual = addSpaces("hello", 2);
+    const expected = "hello  ";
+    equal(actual, expected);
   });
-  it("should not add any spaces to the given string if given count is less than 1", function() {
-    equal(addSpaces("hello", 0), "hello");
+
+  it("should not add any spaces to the string if count is less than 1", function() {
+    const actual = addSpaces("hello", 0);
+    const expected = "hello";
+    equal(actual, expected);
   });
 });
 
-describe("addRow", function() {
+describe("getRow", function() {
   it("should return keys of given obj as a string if isHeader is true", function() {
-    const headers = ["Name", "EmployeeId", "Phone", "Salary"];
-    const startPoints = [0, 11, 25, 44, 50];
-    const isHeader = true;
-    const obj = {
-      Name: "Sam",
-      EmployeeId: "22543",
-      Phone: "88098654XX",
-      Salary: "25000"
-    };
-
-    const expectedOutput = "Name       EmployeeId    Phone              Salary";
-    equal(addRow(headers, startPoints, isHeader, obj), expectedOutput);
+    const actual = getRow(HEADERS, START_POINTS, true, OBJ1);
+    const expected = STRING_HEADERS_LINE;
+    equal(actual, expected);
   });
 
   it("should return values of given obj as a string if isHeader is false", function() {
-    const headers = ["Name", "EmployeeId", "Phone", "Salary"];
-    const startPoints = [0, 11, 25, 44, 50];
-    const isHeader = false;
-    const obj = {
-      Name: "Sam",
-      EmployeeId: "22543",
-      Phone: "88098654XX",
-      Salary: "25000"
-    };
+    const actual = getRow(HEADERS, START_POINTS, false, OBJ1);
+    const expected = STRING_FIRST_LINE;
+    equal(actual, expected);
+  });
+});
 
-    const actualOutput = addRow(headers, startPoints, isHeader, obj);
-    const expectedOutput = "Sam        22543         88098654XX         25000 ";
-    equal(actualOutput, expectedOutput);
+describe("getRows", function() {
+  it("should return an array of all rows", function() {
+    const actual = getRows(JSON_DATA, HEADERS, START_POINTS);
+    const expected = FINAL_RESULT_ARRAY;
+
+    deepEqual(actual, expected);
   });
 });
 
 describe("getStartPoint", function() {
   it("should add 5 more than maximum length of column of given header to startPoint", function() {
-    const header = "Name";
+    const header = "FIRST_NAME";
     const startPoint = 0;
-    const data = [
-      {
-        Name: "Sam",
-        EmployeeId: "22543",
-        Phone: "88098654XX",
-        Salary: "25000"
-      },
-      {
-        Name: "Catherine",
-        EmployeeId: "22123",
-        Phone: "NULL",
-        Salary: "3000"
-      }
-    ];
 
-    const actualOutput = getStartPoint(header, data, startPoint);
-    const expectedOutput = 14;
-    equal(actualOutput, expectedOutput);
+    const actual = getStartPoint(header, JSON_DATA, startPoint);
+    const expected = 15;
+    equal(actual, expected);
+  });
+});
+
+describe("getStartPoints", function() {
+  it("should return all startpoints", function() {
+    const actual = getStartPoints(JSON_DATA, HEADERS);
+    const expected = START_POINTS;
+
+    deepEqual(actual, expected);
   });
 });
