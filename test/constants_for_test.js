@@ -9,7 +9,7 @@ const JSON_DATA = [
   {
     FIRST_NAME: "Kasha",
     LAST_NAME: "Todd",
-    NUMBER: "NULL",
+    NUMBER: null,
     EMAIL: "kasha.todd@yahoo.com",
     ADDRESS: "910, Vine Street, Campbell, CA - 95008"
   }
@@ -28,13 +28,17 @@ const STRING_FIRST_LINE =
   "Debra          Burks         880012XXXX     debra.burks@yahoo.com     9273 Thome Ave., Orchard Park, NY - 14127     ";
 
 const STRING_SECOND_LINE =
-  "Kasha          Todd          NULL           kasha.todd@yahoo.com      910, Vine Street, Campbell, CA - 95008        ";
+  "Kasha          Todd          null           kasha.todd@yahoo.com      910, Vine Street, Campbell, CA - 95008        ";
 
 const FINAL_RESULT_ARRAY = [
   STRING_HEADERS_LINE,
   STRING_FIRST_LINE,
   STRING_SECOND_LINE
 ];
+
+const fs = {
+  readFileSync: () => JSON.stringify(JSON_DATA)
+}
 
 module.exports = {
   JSON_DATA,
@@ -45,5 +49,6 @@ module.exports = {
   STRING_HEADERS_LINE,
   STRING_FIRST_LINE,
   STRING_SECOND_LINE,
-  FINAL_RESULT_ARRAY
+  FINAL_RESULT_ARRAY,
+  fs
 };

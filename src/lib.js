@@ -1,5 +1,4 @@
-const WS = " ";
-const ES = "";
+const { WS, ES, FORMAT } = require("./constants")
 
 const addSpaces = function (string, spaceCount) {
   for (let index = 0; index < spaceCount; index++) {
@@ -52,4 +51,10 @@ const getStartPoints = function (data, headers) {
   return startPoints;
 };
 
-module.exports = { addSpaces, getRow, getRows, getStartPoint, getStartPoints };
+const getData = function (params, fs) {
+  if (params.filePath != null)
+    return JSON.parse(fs.readFileSync(params.filePath, FORMAT));
+  return params.data
+}
+
+module.exports = { addSpaces, getRow, getRows, getStartPoint, getStartPoints, getData };
