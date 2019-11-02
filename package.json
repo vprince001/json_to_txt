@@ -1,6 +1,6 @@
 {
   "name": "json-to-txt",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Reads JSON data (Array of objects) and returns a string in a txt file format.",
   "main": "json_to_txt.js",
   "scripts": {
