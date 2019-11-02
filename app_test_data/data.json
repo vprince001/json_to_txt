@@ -9,7 +9,7 @@
   {
     "FIRST_NAME": "Kasha",
     "LAST_NAME": "Todd",
-    "NUMBER": "NULL",
+    "NUMBER": null,
     "EMAIL": "kasha.todd@yahoo.com",
     "ADDRESS": "910, Vine Street, Campbell, CA - 95008"
   },
@@ -24,7 +24,7 @@
     "FIRST_NAME": "Daryl",
     "LAST_NAME": "Spence",
     "NUMBER": "990015XXXX",
-    "EMAIL": "NULL",
+    "EMAIL": null,
     "ADDRESS": "988 Pearl Lane!!! (Uniondale), NY - 11553"
   },
   {
