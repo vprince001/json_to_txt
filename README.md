@@ -37,36 +37,31 @@ const dataInString = jsonToTxt({ data: someJSONData });
 ```
 [
   {
-    FIRST_NAME: 'Debra',
-    LAST_NAME: 'Burks',
+    NAME: {FIRST_NAME: 'Debra', LAST_NAME: 'Burks'},
     NUMBER: '880012XXXX',
     EMAIL: 'debra.burks@yahoo.com',
     ADDRESS: '9273 Thome Ave., Orchard Park, NY - 14127'
   },
   {
-    FIRST_NAME: 'Kasha',
-    LAST_NAME: 'Todd',
+    NAME: {FIRST_NAME: 'Kasha', LAST_NAME: 'Todd'},
     NUMBER: null,
     EMAIL: 'kasha.todd@yahoo.com',
     ADDRESS: '910, Vine Street, Campbell, CA - 95008'
   },
   {
-    FIRST_NAME: 'Tameka',
-    LAST_NAME: 'Fisher',
+    NAME: {FIRST_NAME: 'Tameka', LAST_NAME: 'Fisher'},
     NUMBER: '880111XXXX',
     EMAIL: 'tameka.fisher@yahoo.com',
     ADDRESS: '7693 Honey Creek St., Redondo Beach, CA - 90278'
   },
   {
-    FIRST_NAME: 'Daryl',
-    LAST_NAME: 'Spence',
+    NAME: {FIRST_NAME: 'Daryl', LAST_NAME: 'Spence'},
     NUMBER: '990015XXXX',
     EMAIL: null,
     ADDRESS: '988 Pearl Lane!!! (Uniondale), NY - 11553'
   },
   {
-    FIRST_NAME: 'Charolette',
-    LAST_NAME: 'Rice',
+    NAME: {FIRST_NAME: 'Charolette', LAST_NAME: 'Rice'},
     NUMBER: '720012XXXX',
     EMAIL: 'charolette.rice@msn.com',
     ADDRESS: '107 ~ River Dr. `Sacramento`, "CA"      95820'
@@ -77,10 +72,10 @@ const dataInString = jsonToTxt({ data: someJSONData });
 #### Sample output (txt data) :
 
 ```
-FIRST_NAME     LAST_NAME        NUMBER               EMAIL                        ADDRESS
-Debra          Burks            880012XXXX           debra.burks@yahoo.com        9273 Thome Ave., Orchard Park, NY - 14127
-Kasha          Todd             null                 kasha.todd@yahoo.com         910, Vine Street, Campbell, CA - 95008
-Tameka         Fisher           880111XXXX           tameka.fisher@yahoo.com      7693 Honey Creek St., Redondo Beach, CA - 90278
-Daryl          Spence           990015XXXX           null                         988 Pearl Lane!!! (Uniondale), NY - 11553
-Charolette     Rice             720012XXXX           charolette.rice@msn.com      107 ~ River Dr. `Sacramento`, "CA"      95820
+NAME                                               NUMBER           EMAIL                         ADDRESS                                               
+{"FIRST_NAME":"Debra","LAST_NAME":"Burks"}         880012XXXX       debra.burks@yahoo.com         9273 Thome Ave., Orchard Park, NY - 14127           
+{"FIRST_NAME":"Kasha","LAST_NAME":"Todd"}          null             kasha.todd@yahoo.com          910, Vine Street, Campbell, CA - 95008              
+{"FIRST_NAME":"Tameka","LAST_NAME":"Fisher"}       880111XXXX       tameka.fisher@yahoo.com       7693 Honey Creek St., Redondo Beach, CA - 90278     
+{"FIRST_NAME":"Daryl","LAST_NAME":"Spence"}        990015XXXX       null                          988 Pearl Lane!!! (Uniondale), NY - 11553           
+{"FIRST_NAME":"Charolette","LAST_NAME":"Rice"}     720012XXXX       charolette.rice@msn.com       107 ~ River Dr. `Sacramento`, "CA"      95820       
 ```

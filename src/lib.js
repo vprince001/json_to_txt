@@ -10,8 +10,9 @@ const addSpaces = function (string, spaceCount) {
 const getRow = function (headers, startPoints, isHeaderRow, obj) {
   let row = ES;
   headers.forEach((header, index) => {
-    row += isHeaderRow ? header : obj[header];
-    let spaceCount = startPoints[index + 1] - row.length;
+    const value = isHeaderRow ? header : obj[header];
+    row += typeof value === 'object' ? JSON.stringify(value) : value;
+    const spaceCount = startPoints[index + 1] - row.length;
     row = addSpaces(row, spaceCount);
   });
   return row;
@@ -29,10 +30,12 @@ const getRows = function (data, headers, startPoints) {
 const getStartPoint = function (header, data, startPoint) {
   let lengths = [header.length];
   data.forEach(obj => {
-    if (obj[header] == null) {
+    if (obj[header] === null) {
       lengths.push(4);
     } else {
-      lengths.push(obj[header].length);
+      const value = obj[header];
+      const valueLength = typeof value === 'object' ? JSON.stringify(value).length : value.length;
+      lengths.push(valueLength);
     }
   });
   startPoint += Math.max(...lengths) + 5;

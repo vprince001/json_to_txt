@@ -1,4 +1,4 @@
-const { equal, deepEqual } = require("assert");
+const {strictEqual, deepStrictEqual} = require("assert");
 
 const {
   JSON_DATA,
@@ -8,7 +8,13 @@ const {
   STRING_HEADERS_LINE,
   STRING_FIRST_LINE,
   FINAL_RESULT_ARRAY,
-  fs
+  fs,
+  JSON_DATA_OBJ,
+  HEADERS_OBJ,
+  OBJ1_OBJ,
+  START_POINTS_OBJ,
+  STRING_FIRST_LINE_OBJ,
+  FINAL_RESULT_ARRAY_OBJ
 } = require("./constants_for_test");
 
 const {
@@ -25,13 +31,13 @@ describe("addSpaces", function () {
   it("should add given number of spaces to the string if count is more than 0", function () {
     const actual = addSpaces("hello", 2);
     const expected = "hello  ";
-    equal(actual, expected);
+    strictEqual(actual, expected);
   });
 
   it("should not add any spaces to the string if count is less than 1", function () {
     const actual = addSpaces("hello", 0);
     const expected = "hello";
-    equal(actual, expected);
+    strictEqual(actual, expected);
   });
 });
 
@@ -39,13 +45,19 @@ describe("getRow", function () {
   it("should return keys of given obj as a string if isHeader is true", function () {
     const actual = getRow(HEADERS, START_POINTS, true, OBJ1);
     const expected = STRING_HEADERS_LINE;
-    equal(actual, expected);
+    strictEqual(actual, expected);
   });
 
   it("should return values of given obj as a string if isHeader is false", function () {
     const actual = getRow(HEADERS, START_POINTS, false, OBJ1);
     const expected = STRING_FIRST_LINE;
-    equal(actual, expected);
+    strictEqual(actual, expected);
+  });
+
+  it("should return values of given obj as a string if isHeader is false and value is an object", function () {
+    const actual = getRow(HEADERS_OBJ, START_POINTS_OBJ, false, OBJ1_OBJ);
+    const expected = STRING_FIRST_LINE_OBJ;
+    strictEqual(actual, expected);
   });
 });
 
@@ -54,7 +66,14 @@ describe("getRows", function () {
     const actual = getRows(JSON_DATA, HEADERS, START_POINTS);
     const expected = FINAL_RESULT_ARRAY;
 
-    deepEqual(actual, expected);
+    deepStrictEqual(actual, expected);
+  });
+
+  it("should return an array of all rows with object as values", function () {
+    const actual = getRows(JSON_DATA_OBJ, HEADERS_OBJ, START_POINTS_OBJ);
+    const expected = FINAL_RESULT_ARRAY_OBJ;
+
+    deepStrictEqual(actual, expected);
   });
 });
 
@@ -65,16 +84,23 @@ describe("getStartPoint", function () {
 
     const actual = getStartPoint(header, JSON_DATA, startPoint);
     const expected = 15;
-    equal(actual, expected);
+    strictEqual(actual, expected);
   });
 });
 
 describe("getStartPoints", function () {
-  it("should return all startpoints", function () {
+  it("should return all start points", function () {
     const actual = getStartPoints(JSON_DATA, HEADERS);
     const expected = START_POINTS;
 
-    deepEqual(actual, expected);
+    deepStrictEqual(actual, expected);
+  });
+
+  it("should return all start points when values contain objects", function () {
+    const actual = getStartPoints(JSON_DATA_OBJ, HEADERS_OBJ);
+    const expected = START_POINTS_OBJ;
+
+    deepStrictEqual(actual, expected);
   });
 });
 
@@ -83,13 +109,13 @@ describe("getData", function () {
     const actual = getData({ filePath: "./data.json" }, fs);
     const expected = JSON_DATA;
 
-    deepEqual(actual, expected);
+    deepStrictEqual(actual, expected);
   });
 
   it("should return JSON data if JSON data is given", function () {
     const actual = getData({ data: JSON_DATA });
     const expected = JSON_DATA;
 
-    deepEqual(actual, expected);
+    deepStrictEqual(actual, expected);
   });
 });
