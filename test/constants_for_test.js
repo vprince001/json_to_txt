@@ -59,10 +59,10 @@ const STRING_HEADERS_LINE_OBJ =
     "NAME                                           NUMBER         EMAIL                     ADDRESS                                       ";
 
 const STRING_FIRST_LINE_OBJ =
-    `{"FIRST_NAME":"Debra","LAST_NAME":"Burks"}     880012XXXX     debra.burks@yahoo.com     9273 Thome Ave., Orchard Park, NY - 14127     `;
+    `{ FIRST_NAME : Debra , LAST_NAME : Burks }     880012XXXX     debra.burks@yahoo.com     9273 Thome Ave., Orchard Park, NY - 14127     `;
 
 const STRING_SECOND_LINE_OBJ =
-    `{"FIRST_NAME":"Kasha","LAST_NAME":"Todd"}      null           kasha.todd@yahoo.com      910, Vine Street, Campbell, CA - 95008        `;
+    `{ FIRST_NAME : Kasha , LAST_NAME : Todd }      null           kasha.todd@yahoo.com      910, Vine Street, Campbell, CA - 95008        `;
 
 const FINAL_RESULT_ARRAY_OBJ = [
   STRING_HEADERS_LINE_OBJ,

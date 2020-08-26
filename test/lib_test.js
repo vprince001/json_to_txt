@@ -78,12 +78,21 @@ describe("getRows", function () {
 });
 
 describe("getStartPoint", function () {
-  it("should add 5 more than maximum length of column of given header to startPoint", function () {
+  it("should add 5 more than maximum length of column for given header", function () {
     const header = "FIRST_NAME";
     const startPoint = 0;
 
     const actual = getStartPoint(header, JSON_DATA, startPoint);
     const expected = 15;
+    strictEqual(actual, expected);
+  });
+
+  it("should add 5 more than maximum length of column for given header with object values", function () {
+    const header = "NAME";
+    const startPoint = 0;
+
+    const actual = getStartPoint(header, JSON_DATA_OBJ, startPoint);
+    const expected = 47;
     strictEqual(actual, expected);
   });
 });
